@@ -23,7 +23,7 @@ export default function Hero() {
     <div className="max-w-4xl mx-auto text-center">
     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900">
       Your Dedicated{" "} <br />
-      <span className="text-transparent bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text">
+      <span className="text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text">
         Virtual Assistant
       </span>
     </h1>

@@ -1,57 +1,10 @@
 "use client";
-
 import { useState } from "react";
-import { Mail, Phone, MapPin, Clock, CheckCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mail, Phone, Clock, CheckCircle } from "lucide-react";
+import CalendlyPopup from "@/components/CalendlyPopup";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSuccessMessage("");
-
-    try {
-      const response = await fetch("https://formspree.io/f/manbwwev", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSuccessMessage("Your message has been sent successfully.");
-        setFormData({ name: "", email: "", company: "", message: "" });
-      } else {
-        setSuccessMessage("Failed to send message. Please try again.");
-      }
-    } catch (error) {
-      setSuccessMessage("An error occurred. Please try again later.");
-    }
-
-    setIsSubmitting(false);
-  };
+  const [showCalendly, setShowCalendly] = useState(false);
 
   const contactInfo = [
     {
@@ -69,30 +22,32 @@ const Contact = () => {
     {
       icon: Clock,
       title: "Availability",
-      details: "Mon–Fri, 8AM–6PM EST",
+      details: "Mon-Fri, 8AM-6PM EST",
       description: "Quick response guaranteed",
     },
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        {/* Section Header */}
+        <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Let's Work Together
+            Let&apos;s Work Together
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Ready to streamline your business operations? Get in touch to discuss how I can help you achieve your goals.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Ready to streamline your business operations? Get in touch to discuss how I can help you achieve your goals more efficiently.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-8">
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {/* Left: Contact Info */}
+          <div className="p-6 sm:p-8 space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
-              <p className="text-gray-600 mb-8">
-                Whether you're looking for ongoing support or help with a specific project, let's talk about how I can assist.
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Get In Touch</h3>
+              <p className="text-gray-600">
+                I&apos;m always excited to discuss new opportunities and challenges. Whether you need ongoing support or help with a specific project, let&apos;s talk about how I can contribute to your success.
               </p>
             </div>
 
@@ -111,106 +66,44 @@ const Contact = () => {
               ))}
             </div>
 
-            <Card className="bg-blue-50 border border-blue-200">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-3 mb-3">
-                  <CheckCircle className="h-6 w-6 text-green-600" />
-                  <h4 className="font-semibold text-gray-900">Quick Response Guarantee</h4>
-                </div>
-                <p className="text-sm text-gray-600">
-                  I respond to all inquiries within 2 hours on business days and within 24 hours on weekends.
+            <div className="border-t pt-4">
+              <div className="flex items-start space-x-2">
+                <CheckCircle className="h-5 w-5 text-green-600 mt-1" />
+                <p className="text-sm text-gray-600 font-medium">
+                  I respond to all inquiries within 2 hours during business hours,<br />and within 24 hours on weekends.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-gray-900">
-                  Send Me a Message
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                        Full Name *
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                        Email Address *
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                      Company (optional)
-                    </label>
-                    <Input
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Company name"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                      Project Details *
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      placeholder="Tell me about your project and goals..."
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold cursor-pointer"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-
-                  {successMessage && (
-                    <p className="text-center text-sm mt-4 text-red-600 font-medium">
-                      {successMessage}
-                    </p>
-                  )}
-                </form>
-              </CardContent>
-            </Card>
+          {/* Right: Calendly Info */}
+        <div className="py-10 px-4 sm:px-6 lg:py-20">
+          <div className="bg-white border border-gray-200 shadow-lg rounded-lg p-6 sm:p-8 max-w-xl mx-auto lg:mx-0">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Prefer a Quick Chat?</h3>
+            <p className="text-gray-600 mb-6">
+              If you&apos;d rather speak directly, you can quickly book a free 15-30 minute discovery call using the button below.
+            </p>
+            <div className="text-center">
+              <button
+                onClick={() => setShowCalendly(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-full shadow transition cursor-pointer"
+              >
+                Book a Call
+              </button>
+            </div>
+            <p className="mt-4 text-sm text-gray-400 text-center">
+              You won&apos;t need to email back and forth to find a time.
+            </p>
           </div>
         </div>
+
+
       </div>
+      </div>
+            {/* Calendly Popup */}
+      {showCalendly && (
+        <CalendlyPopup onClose={() => setShowCalendly(false)} />
+      )}
     </section>
   );
 };

@@ -21,7 +21,7 @@ const About = () => {
               </h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  Hi! I'm a dedicated virtual assistant with over 3 years of experience helping 
+                  Hi! I&apos;m a dedicated virtual assistant with over 3 years of experience helping 
                   entrepreneurs and businesses streamline their operations. My passion lies in 
                   transforming chaos into organized, efficient systems that drive growth.
                 </p>
@@ -77,7 +77,7 @@ const About = () => {
                   </li>
                   <li className="flex justify-between">
                     <span>Availability</span>
-                    <span className="font-semibold text-gray-800">Mon–Fri, 8AM–6PM</span>
+                    <span className="font-semibold text-gray-800">Mon-Fri, 8AM-6PM</span>
                   </li>
                   <li className="flex justify-between">
                     <span>Time Zone</span>

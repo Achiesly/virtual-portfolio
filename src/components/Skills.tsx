@@ -46,7 +46,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-12 bg-white/55">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-12 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">
@@ -84,7 +84,7 @@ const Skills = () => {
         </div>
 
         {/* Tools */}
-        <Card className="rounded-2xl border border-gray-200 bg-white shadow-sm mb-16">
+        <Card className="rounded-2xl border border-gray-200 bg-white/60 shadow-sm mb-16">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-center text-gray-800">
               Tools & Platforms I Work With
@@ -105,7 +105,7 @@ const Skills = () => {
         </Card>
 
         {/* Certifications */}
-        <div className="text-center">
+        <div className="text-center bg-wite/60">
           <h3 className="text-2xl font-bold text-gray-800 mb-8">Certifications & Training</h3>
           <div className="grid md:grid-cols-3 gap-6">
             {certifications.map((cert, i) => (

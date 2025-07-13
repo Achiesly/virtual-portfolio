@@ -129,7 +129,7 @@ const Services = () => {
         {/* CTA */}
         <div className="text-center mt-16">
           <p className="text-gray-600 text-base sm:text-lg mb-6">
-            Don't see what you need? I'm always ready to take on new challenges!
+            Don&apos;t see what you need? I&apos;m always ready to take on new challenges!
           </p>
           <a
             href="mailto:sylviavirtualassistant93@gmail.com"
